@@ -3,9 +3,7 @@ package com.example.UniversityPortal.controller;
 
 import com.example.UniversityPortal.entity.StudentEntity;
 import com.example.UniversityPortal.request.SaveStudentRequest;
-import com.example.UniversityPortal.services.StudentService;
-import com.example.UniversityPortal.services.impl.StudentServiceImpl;
-import lombok.RequiredArgsConstructor;
+import com.example.UniversityPortal.services.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
@@ -17,10 +15,10 @@ import jakarta.validation.Valid;
 @Validated
 public class StudentController {
 
-    private StudentService studentService;
+    private IStudentService studentService;
 
     @Autowired
-    public StudentController(StudentService studentService) {
+    public StudentController(IStudentService studentService) {
         this.studentService = studentService;
     }
     
@@ -30,4 +28,14 @@ public class StudentController {
     public StudentEntity registerStudent(@RequestBody @Valid SaveStudentRequest saveStudentRequest){
         return studentService.saveStudent(saveStudentRequest);
    }
+
+
+   @GetMapping("/fetch")
+   @ResponseStatus(HttpStatus.OK)
+   public StudentEntity fetchStudent(@RequestParam Integer rollNumber){
+
+        return studentService.fetchStudent(rollNumber);
+   }
+
+
 }

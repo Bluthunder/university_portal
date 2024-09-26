@@ -15,4 +15,8 @@ public interface StudentRepository extends CrudRepository<StudentEntity, Integer
     @NotNull
     Optional<StudentEntity> findById(Integer stdID);
 
+    StudentEntity findByRollNumber(Integer rollNumber);
+
+
+
 }

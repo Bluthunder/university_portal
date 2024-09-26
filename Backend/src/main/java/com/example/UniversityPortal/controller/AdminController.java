@@ -1,4 +1,4 @@
-package main.java.com.example.UniversityPortal.controller;
+package com.example.UniversityPortal.controller;
 
 public class AdminController {
 }

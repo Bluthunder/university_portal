@@ -3,24 +3,24 @@ package com.example.UniversityPortal.services.impl;
 import com.example.UniversityPortal.entity.StudentEntity;
 import com.example.UniversityPortal.repository.StudentRepository;
 import com.example.UniversityPortal.request.SaveStudentRequest;
-import com.example.UniversityPortal.services.StudentService;
+import com.example.UniversityPortal.services.IStudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
-public class StudentServiceImpl implements StudentService {
-
-//    private final SaveStudentRequest saveStudentRequest;
+public class StudentServiceImpl implements IStudentService {
 
     private StudentRepository studentRepository;
 
-//    @Autowired
-//    public StudentServiceImpl (StudentRepository studentRepository) {
-//        this.studentRepository = studentRepository;
-//    }
+    @Autowired
+    public StudentServiceImpl (StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
+    }
 
 
     @Override
@@ -34,4 +34,14 @@ public class StudentServiceImpl implements StudentService {
         studentEntity.setStdPhoneNumber(saveStudentRequest.getStdPhoneNumber());
         return studentRepository.save(studentEntity);
     }
+
+    @Override
+    @Transactional
+    public StudentEntity fetchStudent(Integer rollNumber) {
+
+        return studentRepository.findByRollNumber(rollNumber);
+
+    }
+
+
 }
