@@ -30,6 +30,11 @@ Static Page with Animations and University Details**
 
 **DB:** Postgres
 
+
+## Dockerize the spring boot application
+
+
+
 ## Team
 - [@Bluthunder]
 - [@JojangandhaM]

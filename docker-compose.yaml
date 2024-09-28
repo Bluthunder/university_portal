@@ -3,10 +3,25 @@ version: '3.8'
 services:
   postgresdb:
     image: "postgres"
+    container_name: wildflower
     volumes:
-      - 
+      - D:\Bluthunder\postgres-data:/var/lib/postgresql/data
+
+    environment:
+      POSTGRES_PASSWORD: pass123
+      POSTGRES_DB: student_db
+      POSTGRES_USER: postgres
+
+    ports:
+      - "5432:5432"
 
   backend:
+    image: univ-services-app
+    depends_on:
+      - postgresdb
 
-  frontend:
+    ports:
+      - "9090:9090"
+
+#  frontend:
 
