@@ -16,9 +16,17 @@ services:
       - "5432:5432"
 
   backend:
-    image: univ-services-app
+    image: uni-backend
     depends_on:
       - postgresdb
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=pass123
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://service-postgres-db:5432/student_db
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=pass123
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_JPA_HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect
 
     ports:
       - "9090:9090"
